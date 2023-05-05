@@ -34,7 +34,6 @@ class AuthController extends Controller
             $user = Auth::user();
 
             $token = $user->createToken('access_token')->accessToken;
-//            dd($token);
             return redirect()->route('products.index')->withHeaders([
                 'Authorization' => 'Bearer ' . $token,
             ]);
