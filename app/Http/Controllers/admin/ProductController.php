@@ -32,6 +32,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        return response()->json(['pass' =>'hello'], 401);
         $user = Auth::user();
         $pagination = $this->productService->pagination($request);
         $categories = $this->productService->getAllCategory();

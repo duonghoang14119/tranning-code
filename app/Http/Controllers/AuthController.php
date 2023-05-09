@@ -34,6 +34,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
             $token = $user->createToken('access_token')->accessToken;
+            return response()->json(['token' => $token]);
             return redirect()->route('products.index')->withHeaders([
                 'Authorization' => 'Bearer ' . $token,
             ]);
@@ -60,7 +61,9 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        $token = $user->createToken('MyApp')->accessToken;
+        $token = $user->createToken('Register')->accessToken;
+        return response()->json(['token' => $token],
+                                 $user);
         return redirect()->route('login');
     }
 
